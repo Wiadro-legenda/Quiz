@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pl"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>QUIZ ŚWIĄTECZNY</title>
+<!-- TAILWIND CSS -->
+<script type="text/javascript" id="www-widgetapi-script" src="QUIZ%20%C5%9AWI%C4%84TECZNY_pliki/www-widgetapi.js" async=""></script><script src="QUIZ%20%C5%9AWI%C4%84TECZNY_pliki/iframe_api"></script><script src="QUIZ%20%C5%9AWI%C4%84TECZNY_pliki/3.4.17"></script>
+<!-- CZCIONKI -->
+<link href="QUIZ%20%C5%9AWI%C4%84TECZNY_pliki/css2.css" rel="stylesheet">
+<link href="QUIZ%20%C5%9AWI%C4%84TECZNY_pliki/css2_003.css" rel="stylesheet">
+<link href="QUIZ%20%C5%9AWI%C4%84TECZNY_pliki/css2_002.css" rel="stylesheet">
+
+<style>
+    /* === CSS GLOBALNY === */
+    body {
+        transition: background-color 1s ease, filter 2s ease;
+        overflow-x: hidden;
+        margin: 0;
+        background-color: #000;
+    }
+
+    /* Ukrycie scrollbara */
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+
+    /* === FAZA 1: FESTIVE (Pytania 1-10) === */
+    body.theme-festive {
+        background: radial-gradient(circle at 50% 30%, #1a4d2e 0%, #051b14 100%);
+        font-family: 'Playfair Display', serif;
+        color: #f0fdf4;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Śnieg */
+    .snowflake {
+        position: fixed; top: -10px; color: rgba(255, 255, 255, 0.4);
+        pointer-events: none; animation: fall linear infinite; z-index: 1;
+    }
+    @keyframes fall { to { transform: translateY(110vh); } }
+
+    /* === FAZA 2: HORROR (Pytania 11-20) === */
+    /* Zmniejszona ilość kolorów, mrok */
+    body.theme-horror {
+        background-color: #0a0a0a;
+        font-family: 'Share Tech Mono', monospace;
+        color: #888;
+        /* Kluczowa zmiana: desaturacja (wyszarzenie) */
+        filter: grayscale(90%) contrast(110%) brightness(60%);
+    }
+
+    .horror-text {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    }
+
+    /* === FAZA 3: TERMINAL / GLITCH (Pytania 21+) === */
+    body.theme-terminal {
+        background-color: #000;
+        font-family: 'VT323', monospace;
+        color: #ff0000;
+        filter: contrast(150%) brightness(100%);
+    }
+
+    /* Agresywny efekt dla ostatnich pytań */
+    .extreme-glitch {
+        animation: extreme-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite, rgb-split 0.2s steps(2) infinite;
+    }
+
+    @keyframes extreme-shake {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(5px, 5px) rotate(1deg); }
+        50% { transform: translate(0, 0) rotate(0deg); }
+        75% { transform: translate(-5px, 5px) rotate(-1deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    @keyframes rgb-split {
+        0% { text-shadow: -2px 0 #00ffea, 2px 2px #ff003c; }
+        25% { text-shadow: 2px 0 #00ffea, -2px -2px #ff003c; }
+        50% { text-shadow: -1px 0 #00ffea, 1px 1px #ff003c; }
+        75% { text-shadow: 1px 0 #00ffea, -1px -1px #ff003c; }
+        100% { text-shadow: -2px 0 #00ffea, 2px 2px #ff003c; }
+    }
+
+    /* Przejście (Glitch Overlay) */
+    .glitch-layer {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: #000; z-index: 9999; display: none;
+    }
+    .glitch-active {
+        display: block;
+        animation: flash-glitch 0.3s infinite;
+    }
+    @keyframes flash-glitch {
+        0% { opacity: 1; transform: scale(1.1); filter: invert(0); }
+        50% { opacity: 0.8; transform: scale(1); filter: invert(1); }
+        100% { opacity: 1; transform: scale(1.2); filter: invert(0); }
+    }
+
+    /* Ukryty kontener YouTube */
+    #youtube-audio { display: none; }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.relative{position:relative}.inset-0{inset:0px}.z-20{z-index:20}.mx-auto{margin-left:auto;margin-right:auto}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.flex{display:flex}.h-full{height:100%}.h-px{height:1px}.min-h-screen{min-height:100vh}.min-h-\[50vh\]{min-height:50vh}.w-full{width:100%}.w-20{width:5rem}.max-w-2xl{max-width:42rem}.max-w-lg{max-width:32rem}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.animate-\[fadeIn_2s_ease-out\]{animation:fadeIn 2s ease-out}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.border{border-width:1px}.border-amber-200\/20{border-color:rgb(253 230 138 / 0.2)}.bg-amber-200\/50{background-color:rgb(253 230 138 / 0.5)}.bg-emerald-900\/80{background-color:rgb(6 78 59 / 0.8)}.p-4{padding:1rem}.p-10{padding:2.5rem}.px-10{padding-left:2.5rem;padding-right:2.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-center{text-align:center}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.font-light{font-weight:300}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tracking-wide{letter-spacing:0.025em}.tracking-widest{letter-spacing:0.1em}.text-amber-50{--tw-text-opacity:1;color:rgb(255 251 235 / var(--tw-text-opacity, 1))}.text-emerald-100{--tw-text-opacity:1;color:rgb(209 250 229 / var(--tw-text-opacity, 1))}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.drop-shadow-lg{--tw-drop-shadow:drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-500{transition-duration:500ms}.hover\:scale-\[1\.01\]:hover{--tw-scale-x:1.01;--tw-scale-y:1.01;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-emerald-800:hover{--tw-bg-opacity:1;background-color:rgb(6 95 70 / var(--tw-bg-opacity, 1))}</style></head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 theme-festive">
+
+    <!-- KONTENER YOUTUBE API -->
+    <iframe id="youtube-audio" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="YouTube video player" width="0" height="0" src="QUIZ%20%C5%9AWI%C4%84TECZNY_pliki/Z0yszGrfZxI.htm"></iframe>
+
+    <!-- EFEKTY TŁA -->
+    <div class="fixed inset-0 pointer-events-none w-full h-full" id="bg-effects"><div class="snowflake" style="left: 8.112954049833332%; font-size: 0.6788437952925753rem; animation-duration: 5.153177124926999s;">❄</div><div class="snowflake" style="left: 33.880919226318916%; font-size: 1.4659026056716526rem; animation-duration: 6.039427073352947s;">❄</div><div class="snowflake" style="left: 59.07755810720459%; font-size: 1.3530199643636542rem; animation-duration: 5.196343006413336s;">❄</div><div class="snowflake" style="left: 14.022359945751495%; font-size: 1.1964424600269377rem; animation-duration: 8.626746019587635s;">❄</div><div class="snowflake" style="left: 58.854759083846695%; font-size: 0.8445934826912359rem; animation-duration: 11.562082299107665s;">❄</div><div class="snowflake" style="left: 66.64770502734672%; font-size: 0.8078641338643535rem; animation-duration: 12.881129726393965s;">❄</div><div class="snowflake" style="left: 0.6639710321366565%; font-size: 0.9319466132253884rem; animation-duration: 8.800462439570355s;">❄</div><div class="snowflake" style="left: 87.3599756567644%; font-size: 1.0217370981814404rem; animation-duration: 13.108568250173882s;">❄</div><div class="snowflake" style="left: 41.71026040886111%; font-size: 1.084323910323825rem; animation-duration: 14.193963334058676s;">❄</div><div class="snowflake" style="left: 6.796526994718466%; font-size: 1.084594532843412rem; animation-duration: 10.254423504548267s;">❄</div><div class="snowflake" style="left: 56.39127301096456%; font-size: 0.5137643964577145rem; animation-duration: 11.033435535809463s;">❄</div><div class="snowflake" style="left: 20.479055680381432%; font-size: 0.918531328764172rem; animation-duration: 9.882634802490792s;">❄</div><div class="snowflake" style="left: 81.43502661167227%; font-size: 0.7667603528934441rem; animation-duration: 12.513642130062962s;">❄</div><div class="snowflake" style="left: 45.85100269589424%; font-size: 1.4284298130845428rem; animation-duration: 10.967116640688447s;">❄</div><div class="snowflake" style="left: 91.95850312836394%; font-size: 1.0641511319109813rem; animation-duration: 8.084469675615384s;">❄</div><div class="snowflake" style="left: 69.32323218987607%; font-size: 1.0708555280224932rem; animation-duration: 13.045651166244115s;">❄</div><div class="snowflake" style="left: 49.026819897467696%; font-size: 0.8206134042726545rem; animation-duration: 9.658403806713824s;">❄</div><div class="snowflake" style="left: 4.935747925468759%; font-size: 0.612778706226469rem; animation-duration: 10.058890485162586s;">❄</div><div class="snowflake" style="left: 74.0756784388042%; font-size: 1.3129972917077095rem; animation-duration: 7.867390654060783s;">❄</div><div class="snowflake" style="left: 8.478455198981926%; font-size: 0.6601303397307674rem; animation-duration: 9.695434044844998s;">❄</div><div class="snowflake" style="left: 73.91194863440953%; font-size: 1.0827992920471834rem; animation-duration: 9.837325092150895s;">❄</div><div class="snowflake" style="left: 20.098215154073095%; font-size: 0.6042860674424908rem; animation-duration: 8.781952166998387s;">❄</div><div class="snowflake" style="left: 33.12845990550775%; font-size: 1.032736534713072rem; animation-duration: 8.668024480950749s;">❄</div><div class="snowflake" style="left: 78.05476290414268%; font-size: 0.9000203846288191rem; animation-duration: 9.673808943915363s;">❄</div><div class="snowflake" style="left: 85.9298181255389%; font-size: 0.801961262694272rem; animation-duration: 14.712909406086967s;">❄</div><div class="snowflake" style="left: 6.479749759671427%; font-size: 0.5379563768702763rem; animation-duration: 6.562567429435372s;">❄</div><div class="snowflake" style="left: 43.967599965888304%; font-size: 0.8454482045297266rem; animation-duration: 6.144400369806826s;">❄</div><div class="snowflake" style="left: 47.40435977004%; font-size: 0.9322083799176546rem; animation-duration: 14.187300189292714s;">❄</div><div class="snowflake" style="left: 67.96093297119872%; font-size: 1.2537474141361125rem; animation-duration: 8.111222772803796s;">❄</div><div class="snowflake" style="left: 9.030695462225502%; font-size: 0.513164002519757rem; animation-duration: 7.450068585965638s;">❄</div><div class="snowflake" style="left: 7.677675430079689%; font-size: 0.8263623820567233rem; animation-duration: 8.504053023028058s;">❄</div><div class="snowflake" style="left: 93.48524920610117%; font-size: 1.479211052285895rem; animation-duration: 5.032051118849374s;">❄</div><div class="snowflake" style="left: 38.300780794620096%; font-size: 1.4427865740371066rem; animation-duration: 14.32471512737753s;">❄</div><div class="snowflake" style="left: 98.0900674394489%; font-size: 0.5457462534947743rem; animation-duration: 13.065203752887683s;">❄</div><div class="snowflake" style="left: 13.401622556922154%; font-size: 0.5626843647535963rem; animation-duration: 7.2227712024727575s;">❄</div><div class="snowflake" style="left: 9.482363308197073%; font-size: 1.4935430093328987rem; animation-duration: 11.120653112938104s;">❄</div><div class="snowflake" style="left: 57.7616133097453%; font-size: 1.3797601908563357rem; animation-duration: 12.419335152852337s;">❄</div><div class="snowflake" style="left: 47.76466726709422%; font-size: 0.7908057762816796rem; animation-duration: 10.725713905777361s;">❄</div><div class="snowflake" style="left: 42.61330258433811%; font-size: 1.2963953626648164rem; animation-duration: 12.723831824499428s;">❄</div><div class="snowflake" style="left: 48.809758534688896%; font-size: 0.9735693607901328rem; animation-duration: 8.06870730271276s;">❄</div></div>
+    <div class="glitch-layer" id="glitch-overlay"></div>
+
+    <!-- APLIKACJA -->
+    <div class="w-full max-w-2xl relative z-20" id="app">
+            <div class="flex flex-col items-center justify-center min-h-[50vh] space-y-8 text-center px-4 animate-[fadeIn_2s_ease-out]">
+                <div class="glass-card p-10 rounded-2xl max-w-lg w-full transform hover:scale-[1.01] transition duration-500">
+                    <h1 class="text-5xl font-bold text-amber-50 mb-6 drop-shadow-lg tracking-wide">
+                        Świąteczny Quiz
+                    </h1>
+                    <div class="w-20 h-px bg-amber-200/50 mx-auto mb-6"></div>
+                    <p class="text-lg text-emerald-100 font-light italic mb-8">
+                        Włącz dźwięk. Bądź szczery.
+                    </p>
+                    <button onclick="startQuiz()" class="px-10 py-3 bg-emerald-900/80 hover:bg-emerald-800 text-amber-50 rounded-full border border-amber-200/20 shadow-xl transition-all font-bold tracking-widest text-sm uppercase">
+                        ROZPOCZNIJ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+<script>
+    /* 
+    =============================================================================
+    >>> KONFIGURACJA <<<
+    =============================================================================
+    */
+    const CONFIG = {
+        // 1. YouTube ID piosenki "Jingle Bell Rock"
+        // ID to część po "v=" w linku, np. youtube.com/watch?v=Z0yszGrfZxI
+        youtubeId: "ZnDmmiiFSUU&list=RDZnDmmiiFSUU&start_radio=1", 
+
+        // 2. Link do zdjęcia wiadra na końcu
+        bucketImage: "https://www.otometal.pl/images/2/0/20491-4b83.jpg", 
+
+        // 3. Data końca
+        finalDate: "03.05.2026",
+
+        // 4. Punkty zwrotne
+        horrorStart: 10,   // Kiedy muzyka cichnie i znikają kolory
+        terminalStart: 20  // Kiedy zaczyna się totalny chaos
+    };
+
+    /* ============================================================================= */
+
+    // LISTA PYTAŃ
+    const questions = [
+        // 1-10 (Festive)
+        { text: "Kiedy według ciebie powinno się zacząć przygotowania do Wigilii", options: ["miesiąc wcześniej", "tydzień wcześniej", "w ostatniej chwili jak normalny człowiek", "wcale bo i tak wszystko się spierdoli"] },
+        { text: "Barszcz czy zupa grzybowa", options: ["barszcz", "grzybowa", "obie", "cokolwiek byle było gorące"] },
+        { text: "Karp", options: ["tradycja", "ohyda", "biedna ryba", "narzędzie chaosu"] },
+        { text: "Czy choinka powinna być prawdziwa", options: ["tak", "nie", "jak spadnie z lasu to moja", "wszystko jedno"] },
+        { text: "Prezenty", options: ["dawać", "dostawać", "udawać że się cieszysz", "nie zasługuję"] },
+        { text: "Kiedy zaczynasz pić w Wigilię", options: ["po kolacji", "w trakcie", "przed", "nie przestaję od zeszłego roku"] },
+        { text: "Kolędy", options: ["lubię", "toleruję", "wyłączam", "słyszę je nawet gdy ich nie ma"] },
+        { text: "Pasterka", options: ["idę", "nie idę", "byłem kiedyś", "stoję pod kościołem i palę"] },
+        { text: "Wigilia to dla ciebie", options: ["radość", "obowiązek", "teatr", "checkpoint przed końcem roku"] },
+        { text: "Czy czujesz ulgę gdy święta się kończą", options: ["tak", "bardzo", "nie wiem", "one się nigdy nie kończą"] },
+        
+        // 11-20 (Horror - cicho, bez kolorów)
+        { text: "Kiedy ostatni raz naprawdę czułeś spokój", options: ["w dzieciństwie", "niedawno", "nie pamiętam", "nigdy"] },
+        { text: "Czy przy stole świątecznym mówisz to co myślisz", options: ["tak", "czasem", "nigdy", "oni i tak by nie zrozumieli"] },
+        { text: "Gdyby Przepotężne Wiadro zapytało cię o winy odpowiedziałbyś", options: ["szczerze", "półprawdą", "żartem", "milczeniem"] },
+        { text: "Czy boisz się ciszy", options: ["nie", "trochę", "bardzo", "ona mówi za dużo"] },
+        { text: "Co robisz gdy wszyscy już śpią", options: ["idę spać", "siedzę w telefonie", "piję", "myślę za dużo"] },
+        { text: "Czy ktoś przy tym stole zna cię naprawdę", options: ["tak", "jedna osoba", "nikt", "nie chcę żeby wiedzieli"] },
+        { text: "Gdybyś mógł zniknąć na te święta zrobiłbyś to", options: ["nie", "na chwilę", "tak", "już to zrobiłem"] },
+        { text: "Czy kiedykolwiek udawałeś że jest dobrze", options: ["raz", "wiele razy", "zawsze", "tylko dzisiaj"] },
+        { text: "Co słyszysz gdy jest za cicho", options: ["nic", "własne myśli", "coś jeszcze", "głos wiadra"] },
+        { text: "Czy boisz się że zostaniesz taki jaki jesteś", options: ["nie", "trochę", "bardzo", "już zostałem"] },
+
+        // 21-23 (Terminal - Extreme Creepy)
+        { text: "Czy pamiętasz wszystko ze swojego życia", options: ["tak", "większość", "są luki", "nie chcę pamiętać"] },
+        { text: "Czy czujesz że coś w tobie pękło", options: ["nie", "dawno temu", "ostatnio", "nigdy nie było całe"] },
+        { text: "Czy Przepotężne Wiadro cię obserwuje", options: ["nie", "to tylko żart", "czasem", "ono zawsze patrzy"] }
+    ];
+
+    let currentStep = -1;
+    const app = document.getElementById('app');
+    const bgEffects = document.getElementById('bg-effects');
+    const body = document.body;
+    const glitchOverlay = document.getElementById('glitch-overlay');
+    
+    // --- YOUTUBE API SETUP ---
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-audio', {
+            height: '0',
+            width: '0',
+            videoId: CONFIG.youtubeId,
+            playerVars: {
+                'autoplay': 0,
+                'controls': 0,
+                'loop': 1,
+                'playlist': CONFIG.youtubeId // Wymagane do pętli
+            },
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        // Player gotowy, ale czekamy na kliknięcie START
+        console.log("Audio ready");
+    }
+
+    function fadeOutMusic() {
+        // Płynne ściszanie muzyki (Fade Out)
+        if (!player || typeof player.getVolume !== 'function') return;
+        
+        let vol = 100;
+        const fadeInterval = setInterval(() => {
+            vol -= 2;
+            if (vol <= 0) {
+                player.setVolume(0);
+                player.pauseVideo();
+                clearInterval(fadeInterval);
+            } else {
+                player.setVolume(vol);
+            }
+        }, 100); // Co 100ms zmniejsz głośność
+    }
+
+    // --- EFEKTY WIZUALNE ---
+
+    function initSnow() {
+        let snowHTML = '';
+        for(let i=0; i<40; i++) {
+            const left = Math.random() * 100;
+            const size = 0.5 + Math.random() * 1;
+            const animDur = 5 + Math.random() * 10;
+            snowHTML += `<div class="snowflake" style="left: ${left}%; font-size: ${size}rem; animation-duration: ${animDur}s;">❄</div>`;
+        }
+        bgEffects.innerHTML = snowHTML;
+    }
+
+    function triggerHorrorTransition() {
+        // Glitch przejścia
+        glitchOverlay.classList.add('glitch-active');
+        
+        // Rozpocznij wyciszanie muzyki
+        fadeOutMusic();
+
+        setTimeout(() => {
+            // Zmiana motywu na Horror (desaturacja)
+            body.classList.remove('theme-festive');
+            body.classList.add('theme-horror');
+            bgEffects.innerHTML = ''; // Usuń śnieg
+            
+            renderQuestion(currentStep); // Przerysuj pytanie
+            
+            setTimeout(() => {
+                glitchOverlay.classList.remove('glitch-active');
+            }, 500);
+        }, 800);
+    }
+
+    function triggerTerminalTransition() {
+        // Przejście w tryb agresywny
+        body.classList.remove('theme-horror');
+        body.classList.add('theme-terminal');
+    }
+
+    // --- RENDEROWANIE ---
+
+    function startQuiz() {
+        if (player && typeof player.playVideo === 'function') {
+            player.setVolume(100);
+            player.playVideo();
+        }
+        nextStep();
+    }
+
+    function renderStartScreen() {
+        initSnow();
+        app.innerHTML = `
+            <div class="flex flex-col items-center justify-center min-h-[50vh] space-y-8 text-center px-4 animate-[fadeIn_2s_ease-out]">
+                <div class="glass-card p-10 rounded-2xl max-w-lg w-full transform hover:scale-[1.01] transition duration-500">
+                    <h1 class="text-5xl font-bold text-amber-50 mb-6 drop-shadow-lg tracking-wide">
+                        Świąteczny Quiz
+                    </h1>
+                    <div class="w-20 h-px bg-amber-200/50 mx-auto mb-6"></div>
+                    <p class="text-lg text-emerald-100 font-light italic mb-8">
+                        Włącz dźwięk. Bądź szczery.
+                    </p>
+                    <button onclick="startQuiz()" class="px-10 py-3 bg-emerald-900/80 hover:bg-emerald-800 text-amber-50 rounded-full border border-amber-200/20 shadow-xl transition-all font-bold tracking-widest text-sm uppercase">
+                        ROZPOCZNIJ
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderQuestion(index) {
+        const q = questions[index];
+
+        // 1. FAZA WESOŁA (0-9)
+        if (index < CONFIG.horrorStart) {
+            app.innerHTML = `
+                <div class="flex flex-col min-h-[60vh] justify-center w-full max-w-xl mx-auto px-4">
+                    <div class="glass-card rounded-xl p-8 shadow-2xl relative">
+                         <div class="text-center mb-6">
+                            <span class="text-amber-200/70 text-xs tracking-[0.3em] uppercase border-b border-amber-200/20 pb-2">Pytanie ${index + 1}</span>
+                        </div>
+                        <h2 class="text-3xl text-center text-white mb-10 font-serif leading-tight">
+                            ${q.text}
+                        </h2>
+                        <div class="grid gap-4">
+                            ${q.options.map((opt, i) => `
+                                <button onclick="nextStep()" class="text-left py-4 px-6 bg-emerald-950/30 hover:bg-white/10 border border-white/5 rounded-lg transition-all flex items-center group">
+                                    <span class="w-8 h-8 rounded-full border border-amber-200/30 flex items-center justify-center text-sm mr-4 text-amber-100 group-hover:bg-amber-100 group-hover:text-black transition-colors font-serif italic">
+                                        ${String.fromCharCode(65 + i)}
+                                    </span>
+                                    <span class="text-lg text-emerald-50 font-light">${opt}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        } 
+        // 2. FAZA HORROR (10-19) - Mało kolorów, cisza
+        else if (index < CONFIG.terminalStart) {
+            app.innerHTML = `
+                <div class="flex flex-col min-h-[60vh] justify-center px-4 font-mono w-full max-w-xl mx-auto">
+                    <div class="mb-4 text-xs text-gray-600 tracking-widest text-right border-b border-gray-800 pb-1">
+                        PYTANIE_ID_${index + 1}
+                    </div>
+                    <h2 class="text-2xl font-bold mb-12 text-gray-400 uppercase tracking-wide horror-text">
+                        ${q.text}
+                    </h2>
+                    <div class="grid gap-3 border-l-2 border-gray-800 pl-6">
+                        ${q.options.map((opt, i) => `
+                            <button onclick="nextStep()" class="text-left py-2 text-gray-500 hover:text-gray-200 hover:pl-2 transition-all duration-300 font-mono text-sm uppercase">
+                                <span class="text-gray-800 mr-2">></span> ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        } 
+        // 3. FAZA TERMINAL / EXTREME (20+) - Agresywne efekty
+        else {
+            triggerTerminalTransition(); // Upewnij się, że klasa jest nadana
+            app.innerHTML = `
+                <div class="flex flex-col min-h-[60vh] justify-center px-4 font-mono w-full extreme-glitch">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-16 text-red-600 uppercase text-center leading-none" style="text-shadow: 4px 4px 0 #000;">
+                        ${q.text}
+                    </h2>
+                    <div class="grid gap-6 w-full max-w-lg mx-auto">
+                        ${q.options.map((opt, i) => `
+                            <button onclick="nextStep()" class="p-4 bg-red-600 text-black hover:bg-black hover:text-red-600 border-4 border-red-600 uppercase font-bold text-xl tracking-widest transition-none transform hover:skew-x-12">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function renderErrorScreen() {
+        app.innerHTML = `
+            <div class="flex flex-col justify-center items-center h-screen w-full font-mono px-4 extreme-glitch">
+                <div class="text-red-600 text-6xl md:text-9xl font-bold mb-4">ERROR 24</div>
+                <div class="bg-red-600 text-black px-4 py-1 text-xl md:text-2xl font-bold mb-12 uppercase">
+                    odpowiedź nie została zapisana
+                </div>
+                <div class="text-red-600 text-lg mb-8 animate-pulse text-center uppercase tracking-widest">
+                    czy na pewno chcesz kontynuować
+                </div>
+                <div class="flex flex-col space-y-4 w-full max-w-xs">
+                    ${[1,2,3,4].map(i => `
+                        <button onclick="nextStep()" class="w-full py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-black uppercase font-bold tracking-[0.5em]">
+                            TAK
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderFinalInput() {
+        app.innerHTML = `
+            <div class="flex flex-col justify-center items-center min-h-screen w-full px-4 font-mono extreme-glitch">
+                <div class="text-red-600 text-xs tracking-[1em] uppercase mb-12 animate-pulse text-center">
+                    PYTANIE USZKODZONE<br>ODPOWIEDŹ WYMAGANA
+                </div>
+                <h1 class="text-3xl md:text-5xl font-bold text-center text-white mb-16 uppercase leading-tight">
+                    WIESZ JUŻ DLACZEGO TU JESTEŚ
+                </h1>
+                <input type="text" class="w-full max-w-lg bg-black border-b-4 border-red-600 text-center text-red-600 p-4 focus:outline-none font-mono text-2xl uppercase mb-12" placeholder="...">
+                <button onclick="endQuiz()" class="text-sm text-gray-500 hover:text-red-600 tracking-[0.5em] uppercase border-b border-transparent hover:border-red-600 pb-2">
+                    ZATWIERDŹ
+                </button>
+            </div>
+        `;
+    }
+
+    function renderEndScreen() {
+        const imgContent = CONFIG.bucketImage 
+            ? `<img src="${CONFIG.bucketImage}" alt="Wiadro" class="w-full h-full object-cover grayscale contrast-200 brightness-50">`
+            : `<div class="w-full h-full bg-gray-900 border border-red-900"></div>`;
+
+        app.innerHTML = `
+            <div class="flex flex-col items-center justify-center min-h-screen w-full bg-black font-mono">
+                <div class="relative w-80 h-80 md:w-96 md:h-96 mb-16 extreme-glitch">
+                    ${imgContent}
+                    <div class="absolute inset-0 bg-red-900/10 mix-blend-overlay"></div>
+                </div>
+                <div class="text-5xl md:text-8xl font-bold tracking-widest text-red-700 text-center extreme-glitch">
+                    ${CONFIG.finalDate}
+                </div>
+            </div>
+        `;
+    }
+
+    // --- KONTROLER ---
+    function nextStep() {
+        currentStep++;
+
+        // 1. Przejście do Horroru (Pytanie 10 -> 11)
+        if (currentStep === CONFIG.horrorStart) {
+            triggerHorrorTransition();
+            return; 
+        }
+
+        // 2. Renderowanie
+        if (currentStep < questions.length) {
+            renderQuestion(currentStep);
+        } else if (currentStep === questions.length) {
+            renderErrorScreen();
+        } else if (currentStep === questions.length + 1) {
+            renderFinalInput();
+        }
+    }
+
+    function endQuiz() {
+        app.innerHTML = `<div class="flex items-center justify-center h-screen text-red-600 text-4xl tracking-[1em] extreme-glitch font-mono">...</div>`;
+        setTimeout(renderEndScreen, 2000);
+    }
+
+    // Załaduj YouTube API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Inicjalizacja
+    renderStartScreen();
+</script>
+
+
+</body></html>
