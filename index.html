@@ -14,6 +14,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --mist: rgba(255, 255, 255, 0.05);
+            --frost: rgba(255, 255, 255, 0.12);
+            --ember: #e35a4a;
+            --ashen: #151515;
+            --ink: #090909;
+            --glow: rgba(227, 90, 74, 0.35);
+        }
+
         /* === CSS GLOBALNY === */
         body {
             transition: background-color 1s ease, filter 2s ease;
@@ -25,37 +34,80 @@
         /* Ukrycie scrollbara */
         ::-webkit-scrollbar { width: 0; background: transparent; }
 
-        /* === FAZA 1: FESTIVE (Pytania 1-10) === */
-        body.theme-festive {
-            background: radial-gradient(circle at 50% 30%, #1a4d2e 0%, #051b14 100%);
-            font-family: 'Playfair Display', serif;
-            color: #f0fdf4;
+        .panel {
+            background: var(--mist);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+            position: relative;
+            overflow: hidden;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        .panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .choice-button {
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+        }
+
+        .choice-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .divider-glow {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--frost), transparent);
         }
 
         /* Śnieg */
         .snowflake {
-            position: fixed; top: -10px; color: rgba(255, 255, 255, 0.4);
-            pointer-events: none; animation: fall linear infinite; z-index: 1;
+            position: fixed;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 1;
         }
         @keyframes fall { to { transform: translateY(110vh); } }
 
+        /* === FAZA 1: FESTIVE (Pytania 1-10) === */
+        body.theme-festive {
+            background: radial-gradient(circle at 30% 20%, #1f5a40 0%, #0b1812 55%, #050707 100%);
+            font-family: 'Playfair Display', serif;
+            color: #f0fdf4;
+        }
+
+        .festive-glow {
+            box-shadow: 0 0 35px rgba(255, 223, 170, 0.15);
+        }
+
         /* === FAZA 2: HORROR (Pytania 11-20) === */
         body.theme-horror {
-            background-color: #0a0a0a;
+            background: radial-gradient(circle at 50% 0%, #141414 0%, #0a0a0a 50%, #060606 100%);
             font-family: 'Share Tech Mono', monospace;
-            color: #888;
-            filter: grayscale(90%) contrast(110%) brightness(60%);
+            color: #8c8c8c;
+            filter: grayscale(90%) contrast(115%) brightness(62%);
         }
 
         .horror-text {
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+        }
+
+        .scanlines {
+            background-image: repeating-linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.03),
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px,
+                transparent 3px
+            );
         }
 
         /* === FAZA 3: TERMINAL / GLITCH (Pytania 21+) === */
@@ -64,6 +116,11 @@
             font-family: 'VT323', monospace;
             color: #ff0000;
             filter: contrast(150%) brightness(100%);
+        }
+
+        .terminal-frame {
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            box-shadow: 0 0 40px var(--glow);
         }
 
         /* Agresywny efekt dla ostatnich pytań */
@@ -89,8 +146,14 @@
 
         /* Przejście (Glitch Overlay) */
         .glitch-layer {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 9999; display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: none;
         }
         .glitch-active {
             display: block;
@@ -297,17 +360,18 @@
         function renderStartScreen() {
             initSnow();
             app.innerHTML = `
-                <div class="flex flex-col items-center justify-center min-h-[50vh] space-y-8 text-center px-4 animate-[fadeIn_2s_ease-out]">
-                    <div class="glass-card p-10 rounded-2xl max-w-lg w-full transform hover:scale-[1.01] transition duration-500">
-                        <h1 class="text-5xl font-bold text-amber-50 mb-6 drop-shadow-lg tracking-wide">
+                <div class="flex flex-col items-center justify-center min-h-[60vh] space-y-10 text-center px-4 animate-[fadeIn_2s_ease-out]">
+                    <div class="panel festive-glow p-10 md:p-12 rounded-3xl max-w-xl w-full relative">
+                        <div class="text-xs tracking-[0.6em] uppercase text-emerald-200/70 mb-4">Rytuał</div>
+                        <h1 class="text-5xl md:text-6xl font-bold text-amber-50 mb-6 drop-shadow-lg tracking-wide">
                             Świąteczny Quiz
                         </h1>
-                        <div class="w-20 h-px bg-amber-200/50 mx-auto mb-6"></div>
-                        <p class="text-lg text-emerald-100 font-light italic mb-8">
-                            Włącz dźwięk. Bądź szczery.
+                        <div class="divider-glow w-28 mx-auto mb-6"></div>
+                        <p class="text-lg text-emerald-100 font-light italic mb-10">
+                            Włącz dźwięk. Bądź szczery. Nie uciekaj.
                         </p>
-                        <button onclick="startQuiz()" class="px-10 py-3 bg-emerald-900/80 hover:bg-emerald-800 text-amber-50 rounded-full border border-amber-200/20 shadow-xl transition-all font-bold tracking-widest text-sm uppercase">
-                            ROZPOCZNIJ
+                        <button onclick="startQuiz()" class="choice-button px-12 py-3 bg-emerald-950/70 hover:bg-emerald-900 text-amber-50 rounded-full border border-amber-200/30 shadow-xl transition-all font-bold tracking-[0.3em] text-xs uppercase">
+                            Rozpocznij
                         </button>
                     </div>
                 </div>
@@ -321,17 +385,17 @@
             if (index < CONFIG.horrorStart) {
                 app.innerHTML = `
                     <div class="flex flex-col min-h-[60vh] justify-center w-full max-w-xl mx-auto px-4">
-                        <div class="glass-card rounded-xl p-8 shadow-2xl relative">
+                        <div class="panel festive-glow rounded-2xl p-8 md:p-10 shadow-2xl relative">
                              <div class="text-center mb-6">
-                                <span class="text-amber-200/70 text-xs tracking-[0.3em] uppercase border-b border-amber-200/20 pb-2">Pytanie ${index + 1}</span>
+                                <span class="text-amber-200/70 text-xs tracking-[0.4em] uppercase border-b border-amber-200/20 pb-2">Pytanie ${index + 1}</span>
                             </div>
-                            <h2 class="text-3xl text-center text-white mb-10 font-serif leading-tight">
+                            <h2 class="text-3xl md:text-4xl text-center text-white mb-10 font-serif leading-tight">
                                 ${q.text}
                             </h2>
                             <div class="grid gap-4">
                                 ${q.options.map((opt, i) => `
-                                    <button onclick="nextStep()" class="text-left py-4 px-6 bg-emerald-950/30 hover:bg-white/10 border border-white/5 rounded-lg transition-all flex items-center group">
-                                        <span class="w-8 h-8 rounded-full border border-amber-200/30 flex items-center justify-center text-sm mr-4 text-amber-100 group-hover:bg-amber-100 group-hover:text-black transition-colors font-serif italic">
+                                    <button onclick="nextStep()" class="choice-button text-left py-4 px-6 bg-emerald-950/40 hover:bg-white/10 border border-white/10 rounded-xl transition-all flex items-center group">
+                                        <span class="w-9 h-9 rounded-full border border-amber-200/40 flex items-center justify-center text-sm mr-4 text-amber-100 group-hover:bg-amber-100 group-hover:text-black transition-colors font-serif italic">
                                             ${String.fromCharCode(65 + i)}
                                         </span>
                                         <span class="text-lg text-emerald-50 font-light">${opt}</span>
@@ -345,11 +409,11 @@
             // 2. FAZA HORROR
             else if (index < CONFIG.terminalStart) {
                 app.innerHTML = `
-                    <div class="flex flex-col min-h-[60vh] justify-center px-4 font-mono w-full max-w-xl mx-auto">
+                    <div class="flex flex-col min-h-[60vh] justify-center px-4 font-mono w-full max-w-xl mx-auto scanlines">
                         <div class="mb-4 text-xs text-gray-600 tracking-widest text-right border-b border-gray-800 pb-1">
                             PYTANIE_ID_${index + 1}
                         </div>
-                        <h2 class="text-2xl font-bold mb-12 text-gray-400 uppercase tracking-wide horror-text">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-gray-400 uppercase tracking-wide horror-text">
                             ${q.text}
                         </h2>
                         <div class="grid gap-3 border-l-2 border-gray-800 pl-6">
@@ -366,15 +430,17 @@
             else {
                 app.innerHTML = `
                     <div class="flex flex-col min-h-[60vh] justify-center px-4 font-mono w-full extreme-glitch">
-                        <h2 class="text-4xl md:text-6xl font-bold mb-16 text-red-600 uppercase text-center leading-none" style="text-shadow: 4px 4px 0 #000;">
+                        <div class="terminal-frame p-8 md:p-12">
+                            <h2 class="text-4xl md:text-6xl font-bold mb-16 text-red-600 uppercase text-center leading-none" style="text-shadow: 4px 4px 0 #000;">
                             ${q.text}
-                        </h2>
-                        <div class="grid gap-6 w-full max-w-lg mx-auto">
-                            ${q.options.map((opt, i) => `
-                                <button onclick="nextStep()" class="p-4 bg-red-600 text-black hover:bg-black hover:text-red-600 border-4 border-red-600 uppercase font-bold text-xl tracking-widest transition-none transform hover:skew-x-12">
-                                    ${opt}
-                                </button>
-                            `).join('')}
+                            </h2>
+                            <div class="grid gap-6 w-full max-w-lg mx-auto">
+                                ${q.options.map((opt, i) => `
+                                    <button onclick="nextStep()" class="p-4 bg-red-600 text-black hover:bg-black hover:text-red-600 border-4 border-red-600 uppercase font-bold text-xl tracking-widest transition-none transform hover:skew-x-12">
+                                        ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
                         </div>
                     </div>
                 `;
@@ -384,11 +450,13 @@
         function renderErrorScreen() {
             app.innerHTML = `
                 <div class="flex flex-col justify-center items-center h-screen w-full font-mono px-4 extreme-glitch">
-                    <div class="text-red-600 text-6xl md:text-9xl font-bold mb-4">ERROR 24</div>
-                    <div class="bg-red-600 text-black px-4 py-1 text-xl md:text-2xl font-bold mb-12 uppercase">
-                        odpowiedź nie została zapisana
+                    <div class="terminal-frame p-10 text-center">
+                        <div class="text-red-600 text-6xl md:text-9xl font-bold mb-4">ERROR 24</div>
+                        <div class="bg-red-600 text-black px-4 py-1 text-xl md:text-2xl font-bold mb-12 uppercase">
+                            odpowiedź nie została zapisana
+                        </div>
+                        <div class="text-red-800 mt-4 animate-pulse">SYSTEM HALTED. INITIATING PROTOCOL 03-05.</div>
                     </div>
-                    <div class="text-red-800 mt-4 animate-pulse">SYSTEM HALTED. INITIATING PROTOCOL 03-05.</div>
                 </div>
             `;
             
@@ -407,9 +475,10 @@
                     <div class="relative group">
                         <img src="${CONFIG.bucketImage}" 
                              alt="Przepotężne Wiadro" 
-                             class="max-w-[80vw] max-h-[60vh] object-contain filter grayscale contrast-150 drop-shadow-[0_0_30px_rgba(255,0,0,0.3)]"
+                             class="max-w-[80vw] max-h-[60vh] object-contain filter grayscale contrast-150 drop-shadow-[0_0_35px_rgba(255,0,0,0.35)]"
                         >
                         <div class="absolute inset-0 bg-red-500/10 mix-blend-overlay"></div>
+                        <div class="absolute inset-0 border border-red-500/20"></div>
                     </div>
                     
                     <h1 class="text-4xl md:text-6xl text-red-600 font-mono mt-12 tracking-[0.5em] font-bold" 
